@@ -1,0 +1,67 @@
+
+body {
+    background-color: black;
+}
+
+#movieGalleryTitle {
+    font-family: 'Raleway', sans-serif;
+    margin:0;
+    padding: 20px;
+    color: #5a5858 ;
+    background-color: black;
+}
+#movieGalleryContainer {
+    background-color: #212020;
+    height: 530px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.movieContainer {
+    width: 20%;
+    margin-top: 40px;
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: top;
+
+    overflow: hidden;
+
+
+}
+
+.posterContainer {
+
+    margin: auto;
+    width: 90%;
+    display: block;
+
+}
+
+.titleContainer{
+
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    margin: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    white-space: pre-line;
+    vertical-align: top;
+
+}
+
+.yearContainer {
+
+    color: lightgrey;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    margin-top: 0;
+    margin-left: inherit;
+
+
+}
+
+img {
+
+}

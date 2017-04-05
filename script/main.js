@@ -1,29 +1,56 @@
-(function myMainFunction () {
+(function myMainFunction() {
 
-    /* TEST */
-    // var req = new XMLHttpRequest();
-    // req.open('GET', 'http://localhost/movie_gallery/movie_data/movies.json', false);
-    // req.send (null);
-    // if (req.status == 0)
-    //     dump(req.responseText);
+    var movieGalleryInstance = new MovieGallery();
 
 
-    var ajaxhttp = new XMLHttpRequest();
-    var ajaxUrl = "http://localhost:63342/movie_gallery/movie_data/movies.json";
+    var galleryContainer = document.getElementById('movieGalleryContainer');
 
-    ajaxhttp.open("GET", ajaxUrl, true);
+    // Loads Gallery
+    movieGalleryInstance.load(function stuffHasLoaded(jsonMovies) {
 
-    ajaxhttp.onreadystatechange = function () {
+        // Browse all movies
+        for (var i = 0; i < jsonMovies.Search.length; i++) {
 
-        if (ajaxhttp.readyState === 4 && ajaxhttp.status === 200) {
-            var resText = JSON.parse(ajaxhttp.responseText);
-            // var randQuoteNr = Math.floor(Math.random() * resText.collection.length);
+            // Create 1 movie element
+            var movieUIElement = createMovieElement(jsonMovies.Search[i]);
 
-            document.getElementById('galleryData').innerHTML = ajaxhttp.responseText;
-            console.log(resText.Search[2].Title);
+            // Append newly created element into the DOM
+            galleryContainer.appendChild(movieUIElement)
         }
-    };
+    });
 
-    ajaxhttp.send(null);
+    function createMovieElement(movieInfo) {
 
-}) ();
+
+        // Create 1 movie container
+        var containingElement = document.createElement('div');
+        containingElement.className = 'movieContainer';
+
+
+        var posterElement = document.createElement('img');
+        posterElement.className = 'posterContainer';
+        posterElement.src = movieInfo.Poster;
+        containingElement.appendChild(posterElement);
+
+
+        // Create element containg the movie title
+        var titleElement = document.createElement('h2');
+        titleElement.className = 'titleContainer';
+
+        // Insert the movie title
+        titleElement.innerHTML = movieInfo.Title;
+
+        // Add the movie title to the 1 movie container
+        containingElement.appendChild(titleElement);
+
+        var yearElement = document.createElement('h1');
+        yearElement.className = 'yearContainer';
+        yearElement.innerHTML = movieInfo.Year;
+        containingElement.appendChild(yearElement);
+
+
+        // Send back the 1 Movie container
+        return containingElement;
+    }
+
+})();
