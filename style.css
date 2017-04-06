@@ -5,14 +5,15 @@ body {
 
 #movieGalleryTitle {
     font-family: 'Raleway', sans-serif;
-    margin:0;
+    margin: 0;
     padding: 20px;
-    color: #5a5858 ;
+    color: #5a5858;
     background-color: black;
 }
+
 #movieGalleryContainer {
     background-color: #212020;
-    height: 530px;
+    height: 495px;
     overflow: auto;
     white-space: nowrap;
 }
@@ -20,31 +21,34 @@ body {
 .movieContainer {
     width: 20%;
     margin-top: 40px;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     display: inline-block;
     vertical-align: top;
 
     overflow: hidden;
 
-
 }
 
 .posterContainer {
 
+    color: white;
+    background-color: black;
+    height: 275px;
     margin: auto;
     width: 90%;
     display: block;
 
 }
 
-.titleContainer{
+.titleContainer {
 
     color: white;
     font-family: 'Raleway', sans-serif;
     margin: 10px;
     margin-bottom: 5px;
     padding: 5px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     white-space: pre-line;
     vertical-align: top;
 
@@ -59,9 +63,46 @@ body {
     margin-top: 0;
     margin-left: inherit;
 
+}
+
+.placeholder {
+    margin: 85px;
+    float: left;
+    width: 20px;
+    height: 20px;
+    /*background: red;*/
+    background: #212020;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
 
 }
 
+
+
 img {
 
+    height: 100%;
+}
+
+
+
+.loading {
+
+    margin: auto;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    border: .25rem solid rgba(255, 255, 255, 0.2);
+    border-top-color: white;
+    animation: spin 1s infinite linear;
+
+    /*&--double {*/
+    /*border-style: double;*/
+    /*border-width: .5rem;*/
+    /*}*/
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: pink;
 }
