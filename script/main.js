@@ -12,7 +12,7 @@
         for (var i = 0; i < jsonMovies.Search.length; i++) {
 
             // Create 1 movie element
-            var movieUIElement = createMovieElement(jsonMovies.Search[i]);
+            var movieUIElement = createMovieElement(jsonMovies.Search[i], i);
 
             // Append newly created element into the DOM
             galleryContainer.appendChild(movieUIElement)
@@ -20,7 +20,7 @@
     });
 
 
-    function createMovieElement(movieInfo) {
+    function createMovieElement(movieInfo, movieElementIndex) {
 
 
 
@@ -28,36 +28,38 @@
         var containingElement = document.createElement('div');
         containingElement.className = 'movieContainer';
 
-        var containingElement2 = document.createElement('div');
+        var containingPoster = document.createElement('div');
 
-        containingElement2.className = 'posterContainer';
-        containingElement.appendChild(containingElement2);
+        containingPoster.className = 'posterContainer';
+        containingElement.appendChild(containingPoster);
 
 
         var posterElement = document.createElement('img');
         posterElement.className = 'poster';
-        // posterElement.src = movieInfo.Poster;
-        containingElement2.appendChild(posterElement);
+        posterElement.src = movieInfo.Poster;
+        containingPoster.appendChild(posterElement);
 
 
 
         var circleElement = document.createElement('div');
         circleElement.className = 'placeholder';
-        containingElement2.appendChild(circleElement);
+        containingPoster.appendChild(circleElement);
 
 
 
-        // posterElement.onload = function hidePlaceholder () {
-        //
-        //     // var elem = document.getElementsByClassName('placeholder');
-        //     var posterContainer= document.getElementsByClassName('posterContainer');
-        //     circleElement.parentNode.removeChild(circleElement);
-        //
-        //     posterContainer.removeAttribute("style");
-        //
-        //
-        //
-        // };
+
+        posterElement.onload = function hidePlaceholder () {
+            circleElement.className += ' hidden';
+
+
+            containingPoster.className += ' loaded';
+        };
+
+
+        var containingText = document.createElement('div');
+
+        containingText.className = 'textContainer';
+        containingElement.appendChild(containingText);
 
 
         // Create element containing the movie title
@@ -66,12 +68,15 @@
         // Insert the movie title
         titleElement.innerHTML = movieInfo.Title;
         // Add the movie title to the 1 movie container
-        containingElement.appendChild(titleElement);
+        containingText.appendChild(titleElement);
 
         var yearElement = document.createElement('h1');
         yearElement.className = 'yearContainer';
         yearElement.innerHTML = movieInfo.Year;
-        containingElement.appendChild(yearElement);
+        containingText.appendChild(yearElement);
+
+
+        containingElement.style['animationDelay'] = (movieElementIndex * 0.4)+'s';
 
 
         // Send back the 1 Movie container
